@@ -366,7 +366,7 @@ namespace Game.Mods.QuestActionsExtension
                 total += Helpers.CalculateLengthOrStackCount(items);
             }
 
-            return total > _numberOfItems;
+            return total >= _numberOfItems;
         }
 
         public override object GetSaveData()
