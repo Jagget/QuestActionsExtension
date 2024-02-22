@@ -6,5 +6,8 @@
     "DFUnity_Version": "1.0.0",
     "ModDescription": "Adds new quest actions/condition.\r Compatible with Actions Framework",
     "GUID": "403fd0ed-3383-47a3-8787-b684e133c311",
-    "Files": []
+    "Files": [
+        "Assets/Game/Mods/QuestActionsExtension/QuestActionsExtension.cs",
+        "Assets/Game/Mods/QuestActionsExtension/QuestActionsExtension.dfmod.json"
+    ]
 }
