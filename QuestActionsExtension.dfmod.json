@@ -1,13 +1,22 @@
 {
     "ModTitle": "Quest Actions Extension",
-    "ModVersion": "1.1.1",
+    "ModVersion": "1.2.0",
     "ModAuthor": "Jagget",
     "ContactInfo": "https://forums.dfworkshop.net",
     "DFUnity_Version": "1.0.0",
     "ModDescription": "Adds new quest actions/condition.\r Compatible with Actions Framework",
     "GUID": "403fd0ed-3383-47a3-8787-b684e133c311",
     "Files": [
+        "Assets/Game/Mods/QuestActionsExtension/QuestActionsExtension.dfmod.json",
+        "Assets/Game/Mods/QuestActionsExtension/Helpers.cs",
         "Assets/Game/Mods/QuestActionsExtension/QuestActionsExtension.cs",
-        "Assets/Game/Mods/QuestActionsExtension/QuestActionsExtension.dfmod.json"
+        "Assets/Game/Mods/QuestActionsExtension/Actions/ReducePlayerHealth.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/EquippedWithItem.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/ReducePlayerFatigue.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/ReducePlayerMagicka.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/InfectPlayerWith.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/WithinUnits.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerHandsover.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerPossesses.cs"
     ]
 }
