@@ -331,6 +331,7 @@ namespace Game.Mods.QuestActionsExtension
         public PlayerPossesses(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
+            IsAlwaysOnTriggerCondition = true;
         }
 
         public override string Pattern => @"player possesses (?<numberOfItems>\d+) items class (?<itemClass>\d+) subclass (?<itemSubClass>\d+)";

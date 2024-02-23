@@ -32,7 +32,7 @@ Here's the list of added triggers:
 Also, keep in mind, there's is currently an issue with HUD https://github.com/Interkarma/daggerfall-unity/issues/2593
 that might affect the user experience. 
 
-`player equipped with` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
+`player possesses` and `player equipped with` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
 
 Example quest of selling 10 arrows:
 
