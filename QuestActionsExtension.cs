@@ -32,6 +32,7 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new PlayerPossesses(null));
             questMachine.RegisterAction(new PlayerHandsover(null));
             questMachine.RegisterAction(new InfectPlayerWith(null));
+            questMachine.RegisterAction(new EquippedWithItem(null));
             _mod.IsReady = true;
         }
     }
@@ -580,6 +581,64 @@ namespace Game.Mods.QuestActionsExtension
         }
     }
 
+    public class EquippedWithItem : ActionTemplate
+    {
+        private int _itemClass;
+        private int _itemSubClass;
+
+        public EquippedWithItem(Quest parentQuest) : base(parentQuest)
+        {
+            IsTriggerCondition = true;
+            IsAlwaysOnTriggerCondition = true;
+        }
+
+        public override string Pattern => @"player equipped with item class (?<itemClass>\d+) subclass (?<itemSubClass>\d+)";
+
+        public override IQuestAction CreateNew(string source, Quest parentQuest)
+        {
+            Match match = Test(source);
+            if (!match.Success)
+                return null;
+
+            return new EquippedWithItem(parentQuest)
+            {
+                _itemClass = Parser.ParseInt(match.Groups["itemClass"].Value),
+                _itemSubClass = Parser.ParseInt(match.Groups["itemSubClass"].Value),
+            };
+        }
+
+        public override bool CheckTrigger(Task _)
+        {
+            return Helpers.Contains(GameManager.Instance.PlayerEntity.ItemEquipTable.EquipTable, (ItemGroups)_itemClass, _itemSubClass);
+        }
+
+        public override object GetSaveData()
+        {
+            return new SaveData_v1()
+            {
+                itemClass = _itemClass,
+                itemSubClass = _itemSubClass,
+            };
+        }
+
+        public override void RestoreSaveData(object dataIn)
+        {
+            if (dataIn == null)
+                return;
+            var data = (SaveData_v1)dataIn;
+
+            _itemClass = data.itemClass;
+            _itemSubClass = data.itemSubClass;
+        }
+
+        [FullSerializer.fsObject("v1")]
+        public struct SaveData_v1
+        {
+            public int itemClass;
+            public int itemSubClass;
+        }
+    }
+
     public static class Helpers
     {
         public static int CalculateLengthOrStackCount(IReadOnlyCollection<DaggerfallUnityItem> itemList)
@@ -614,6 +673,12 @@ namespace Game.Mods.QuestActionsExtension
                     storage.RemoveItem(itemList[i]);
                 }
             }
+        }
+
+        public static bool Contains(IEnumerable<DaggerfallUnityItem> items, ItemGroups itemGroup, int itemIndex)
+        {
+            var groupIndex = DaggerfallUnity.Instance.ItemHelper.GetGroupIndex(itemGroup, itemIndex);
+            return items.Where(item => item != null).Any(item => item.ItemGroup == itemGroup && item.GroupIndex == groupIndex);
         }
     }
 }
