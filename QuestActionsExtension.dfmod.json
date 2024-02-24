@@ -19,6 +19,7 @@
         "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerHandsover.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerPossesses.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/WhenHealthLevel.cs",
-        "Assets/Game/Mods/QuestActionsExtension/Actions/WhenFatigueLevel.cs"
+        "Assets/Game/Mods/QuestActionsExtension/Actions/WhenFatigueLevel.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/WhenMagickaLevel.cs"
     ]
 }

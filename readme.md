@@ -14,13 +14,13 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * infect player as vampire
 * infect player as werewolf
 * infect player as wereboar
-* player handsover \<numberOfItems> items class \<itemClass> subclass \<itemSubClass>
+* player handsover \<numberOfItems> items class \<itemClass> subclass \<TemplateIndex>
 
 ## Here's the list of added triggers: 
 * player within \<distance> units of foe \<foe> // Actions Framework
 * player within \<distance> units of item \<item> // Actions Framework
-* player possesses \<numberOfItems> items class \<itemClass> subclass \<itemSubClass>
-* player equipped with item class \<itemClass> subclass \<itemSubClass>
+* player possesses \<numberOfItems> items class \<itemClass> subclass \<TemplateIndex>
+* player equipped with item class \<itemClass> subclass \<TemplateIndex>
 * player fatigue is less than \<minPoints> pt
 * player fatigue is less than \<minPercent>%
 * player magicka is less than \<minPoints> pt
