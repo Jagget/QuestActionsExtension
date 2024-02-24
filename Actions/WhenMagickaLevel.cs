@@ -1,19 +1,18 @@
 using System.Text.RegularExpressions;
 using DaggerfallWorkshop.Game;
-using DaggerfallWorkshop.Game.Entity;
 using DaggerfallWorkshop.Game.Questing;
 
 namespace Game.Mods.QuestActionsExtension.Actions
 {
-    public class WhenFatigueLevel : ActionTemplate
+    public class WhenMagickaLevel : ActionTemplate
     {
         private int _minPoints;
         private int _minPercent;
 
-        public override string Pattern => @"player fatigue is less than (?<minPoints>\d+) pt|" +
-                                          @"player fatigue is less than (?<minPercent>\d+)%";
+        public override string Pattern => @"player magicka is less than (?<minPoints>\d+) pt|" +
+                                          @"player magicka is less than (?<minPercent>\d+)%";
 
-        public WhenFatigueLevel(Quest parentQuest) : base(parentQuest)
+        public WhenMagickaLevel(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
         }
@@ -27,7 +26,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
             var amountGroup = match.Groups["minPoints"];
             var percentGroup = match.Groups["minPercent"];
 
-            return new WhenFatigueLevel(parentQuest)
+            return new WhenMagickaLevel(parentQuest)
             {
                 _minPoints = amountGroup.Success ? Parser.ParseInt(amountGroup.Value) : 0,
                 _minPercent = percentGroup.Success ? Parser.ParseInt(percentGroup.Value) : 0,
@@ -38,13 +37,13 @@ namespace Game.Mods.QuestActionsExtension.Actions
         {
             if (_minPercent > 0)
             {
-                var currentFatigue = GameManager.Instance.PlayerEntity.CurrentFatigue / GameManager.Instance.PlayerEntity.MaxFatigue * 100;
-                return currentFatigue <= _minPercent;
+                var currentMagicka = GameManager.Instance.PlayerEntity.CurrentMagicka / GameManager.Instance.PlayerEntity.MaxMagicka * 100;
+                return currentMagicka <= _minPercent;
             }
 
             if (_minPoints > 0)
             {
-                return GameManager.Instance.PlayerEntity.CurrentFatigue <= _minPoints * DaggerfallEntity.FatigueMultiplier;
+                return GameManager.Instance.PlayerEntity.CurrentMagicka <= _minPoints;
             }
 
             return false;

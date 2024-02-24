@@ -29,6 +29,7 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new EquippedWithItem(null));
             questMachine.RegisterAction(new WhenHealthLevel(null));
             questMachine.RegisterAction(new WhenFatigueLevel(null));
+            questMachine.RegisterAction(new WhenMagickaLevel(null));
             _mod.IsReady = true;
         }
     }

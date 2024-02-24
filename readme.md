@@ -4,7 +4,7 @@ QuestActionsExtension continues the work started by Actions Framework.
 
 It includes the same 3 actions from Actions Framework and adds more new ones.
 
-Here's the list of added actions:
+## Here's the list of added actions:
 * reduce player health by \<percent> // Actions Framework
 * reduce player health on \<amount>
 * reduce player fatigue by \<percent>
@@ -16,25 +16,36 @@ Here's the list of added actions:
 * infect player as wereboar
 * player handsover \<numberOfItems> items class \<itemClass> subclass \<itemSubClass>
 
-Here's the list of added triggers: 
+## Here's the list of added triggers: 
 * player within \<distance> units of foe \<foe> // Actions Framework
 * player within \<distance> units of item \<item> // Actions Framework
 * player possesses \<numberOfItems> items class \<itemClass> subclass \<itemSubClass>
 * player equipped with item class \<itemClass> subclass \<itemSubClass>
+* player fatigue is less than \<minPoints> pt
+* player fatigue is less than \<minPercent>%
+* player magicka is less than \<minPoints> pt
+* player magicka is less than \<minPercent>%
+* player health is less than \<minPoints> pt
+  * pchealth lower than \<minPoints> // Health Quest Actions is also supported
+* player health is less than \<minPercent>%
+  * pchealthp lower than \<minPercent> // Health Quest Actions is also supported
 
-`player possesses` will check the player's inventory for specific amount of items.
+## Details
 
-`player handsover` will remove items from the inventory.
-
-`player within` checks horizontal distance in in-game distance units (whatever they are).
-
-`reduce player XXX` will change player's vitals. The vitals will not be reduced to the 0.
+* `player possesses` will check the player's inventory for specific amount of items.
+* `player handsover` will remove items from the inventory.
+* `player within` checks horizontal distance in in-game distance units (whatever they are).
+* `reduce player XXX` will change player's vitals. The vitals will not be reduced to the 0.
 Also, keep in mind, there's is currently an issue with HUD https://github.com/Interkarma/daggerfall-unity/issues/2593
 that might affect the user experience. 
+* `player possesses` and `player equipped with` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
+* `player [vitals] is less than` triggers will fire only once. Author will need to create several stages if they need it to fire more than once.
+* `player fatigue is less than <minPoints> pt` is applying FatigueMultiplier inside, so authors will need to set normal value as on the character page.
+  ```
+  player fatigue is less than 30 pt // NOT 1920! 😁
+  ```
 
-`player possesses` and `player equipped with` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
-
-Example quest of selling 10 arrows:
+## Example quest of selling 10 arrows
 
 ```
 Quest: SELLINGARROWS
