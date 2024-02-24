@@ -16,7 +16,9 @@ namespace Game.Mods.QuestActionsExtension.Actions
         {
         }
 
-        public override string Pattern => "infect player as (?<vampire>vampire)|infect player as (?<werewolf>werewolf)|infect player as (?<wereboar>wereboar)";
+        public override string Pattern => "infect player as (?<vampire>vampire)|" +
+                                          "infect player as (?<werewolf>werewolf)|" +
+                                          "infect player as (?<wereboar>wereboar)";
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)
         {

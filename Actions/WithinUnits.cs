@@ -15,7 +15,8 @@ namespace Game.Mods.QuestActionsExtension.Actions
             IsTriggerCondition = true;
         }
 
-        public override string Pattern => @"player within (?<distance>\d+) units of foe (?<foe>[a-zA-Z0-9_.-]+)|player within (?<distance>\d+) units of item (?<item>[a-zA-Z0-9_.-]+)";
+        public override string Pattern => @"player within (?<distance>\d+) units of foe (?<foe>[a-zA-Z0-9_.-]+)|" +
+                                          @"player within (?<distance>\d+) units of item (?<item>[a-zA-Z0-9_.-]+)";
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)
         {

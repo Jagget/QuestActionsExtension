@@ -27,6 +27,7 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new PlayerHandsover(null));
             questMachine.RegisterAction(new InfectPlayerWith(null));
             questMachine.RegisterAction(new EquippedWithItem(null));
+            questMachine.RegisterAction(new WhenHealthLevel(null));
             _mod.IsReady = true;
         }
     }

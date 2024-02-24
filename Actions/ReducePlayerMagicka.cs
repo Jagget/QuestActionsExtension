@@ -14,7 +14,8 @@ namespace Game.Mods.QuestActionsExtension.Actions
         {
         }
 
-        public override string Pattern => @"reduce player magicka by (?<percent>\d+)|reduce player magicka on (?<amount>\d+)";
+        public override string Pattern => @"reduce player magicka by (?<percent>\d+)|" +
+                                          @"reduce player magicka on (?<amount>\d+)";
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)
         {
@@ -27,8 +28,8 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             return new ReducePlayerMagicka(parentQuest)
             {
-                _percent = percentGroup.Success ? Parser.ParseInt(match.Groups["percent"].Value) : 0,
-                _amount = amountGroup.Success ? Parser.ParseInt(match.Groups["amount"].Value) : 0,
+                _percent = percentGroup.Success ? Parser.ParseInt(percentGroup.Value) : 0,
+                _amount = amountGroup.Success ? Parser.ParseInt(amountGroup.Value) : 0,
             };
         }
 
