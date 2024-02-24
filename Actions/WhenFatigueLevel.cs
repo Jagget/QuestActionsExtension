@@ -4,17 +4,15 @@ using DaggerfallWorkshop.Game.Questing;
 
 namespace Game.Mods.QuestActionsExtension.Actions
 {
-    public class WhenHealthLevel : ActionTemplate
+    public class WhenFatigueLevel : ActionTemplate
     {
         private int _minPoints;
         private int _minPercent;
 
-        public override string Pattern => @"pchealth lower than (?<minPoints>\d+)|" +
-                                          @"player health is less than (?<minPoints>\d+) pt|" +
-                                          @"pchealthp lower than (?<minPercent>\d+)|" +
-                                          @"player health is less than (?<minPercent>\d+)%";
+        public override string Pattern => @"player fatigue is less than (?<minPoints>\d+) pt|" +
+                                          @"player fatigue is less than (?<minPercent>\d+)%";
 
-        public WhenHealthLevel(Quest parentQuest) : base(parentQuest)
+        public WhenFatigueLevel(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
         }
@@ -28,7 +26,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
             var amountGroup = match.Groups["minPoints"];
             var percentGroup = match.Groups["minPercent"];
 
-            return new WhenHealthLevel(parentQuest)
+            return new WhenFatigueLevel(parentQuest)
             {
                 _minPoints = amountGroup.Success ? Parser.ParseInt(amountGroup.Value) : 0,
                 _minPercent = percentGroup.Success ? Parser.ParseInt(percentGroup.Value) : 0,
@@ -39,13 +37,13 @@ namespace Game.Mods.QuestActionsExtension.Actions
         {
             if (_minPercent > 0)
             {
-                var currentHealth = GameManager.Instance.PlayerEntity.CurrentHealthPercent * 100;
-                return currentHealth <= _minPercent;
+                var currentFatigue = GameManager.Instance.PlayerEntity.CurrentFatigue / GameManager.Instance.PlayerEntity.MaxFatigue * 100;
+                return currentFatigue <= _minPercent;
             }
 
             if (_minPoints > 0)
             {
-                return GameManager.Instance.PlayerEntity.CurrentHealth <= _minPoints;
+                return GameManager.Instance.PlayerEntity.CurrentFatigue <= _minPoints;
             }
 
             return false;

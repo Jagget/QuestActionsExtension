@@ -28,6 +28,7 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new InfectPlayerWith(null));
             questMachine.RegisterAction(new EquippedWithItem(null));
             questMachine.RegisterAction(new WhenHealthLevel(null));
+            questMachine.RegisterAction(new WhenFatigueLevel(null));
             _mod.IsReady = true;
         }
     }
