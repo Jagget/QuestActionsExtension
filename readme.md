@@ -48,6 +48,7 @@ Also, keep in mind, there's is currently an issue with HUD https://github.com/In
 that might affect the user experience. 
 * `can kill` - adding it will bypass 1 point limit and will allow to kill a player 
 * `player possesses`, `player equipped with`, and `player currentmappixel` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
+* The distance in `player currentmappixel` is $`\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}`$
 * `player [vitals] is less than` triggers will fire only once. Author will need to create several stages if they need it to fire more than once.
 * `player fatigue is less than <minPoints> pt` is applying FatigueMultiplier inside, so authors will need to set normal value as on the character page.
   ```
