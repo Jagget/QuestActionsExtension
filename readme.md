@@ -6,6 +6,10 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 
 ## Here's the list of added actions:
 * reduce player health by \<percent> // Actions Framework
+* reduce player health by \<percent> every \<interval> seconds
+* reduce player health by \<percent> every \<interval> seconds can kill
+* reduce player health by \<percent> every \<interval> seconds \<repeats> times
+* reduce player health by \<percent> every \<interval> seconds \<repeats> times can kill
 * reduce player health on \<amount>
 * reduce player fatigue by \<percent>
 * reduce player fatigue on \<amount>
@@ -29,16 +33,21 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
   * pchealth lower than \<minPoints> // Health Quest Actions is also supported
 * player health is less than \<minPercent>%
   * pchealthp lower than \<minPercent> // Health Quest Actions is also supported
+* player currentmappixel x \<xCoord> y \<yCoord> 
+* player currentmappixel x \<xCoord> y \<yCoord> delta \<distance>
 
 ## Details
 
 * `player possesses` will check the player's inventory for specific amount of items.
+  Works with mundane items that you can equip or pick up from regular loot.
+  For quest items, created by quest command, use other command, like `clicked item`, `take item`, or `toting` 
 * `player handsover` will remove items from the inventory.
 * `player within` checks horizontal distance in in-game distance units (whatever they are).
 * `reduce player XXX` will change player's vitals. The vitals will not be reduced to the 0.
 Also, keep in mind, there's is currently an issue with HUD https://github.com/Interkarma/daggerfall-unity/issues/2593
 that might affect the user experience. 
-* `player possesses` and `player equipped with` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
+* `can kill` - adding it will bypass 1 point limit and will allow to kill a player 
+* `player possesses`, `player equipped with`, and `player currentmappixel` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
 * `player [vitals] is less than` triggers will fire only once. Author will need to create several stages if they need it to fire more than once.
 * `player fatigue is less than <minPoints> pt` is applying FatigueMultiplier inside, so authors will need to set normal value as on the character page.
   ```
