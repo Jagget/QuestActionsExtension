@@ -45,13 +45,13 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             if (player.Items.Contains((ItemGroups)_itemClass, _itemSubClass))
             {
-                Items = player.Items.SearchItems((ItemGroups)_itemClass, _itemSubClass);
+                Items = player.Items.SearchItems((ItemGroups)_itemClass, _itemSubClass).FindAll(item => !item.IsQuestItem);
                 inventoryItems += Helpers.CalculateLengthOrStackCount(Items);
             }
 
             if (player.WagonItems.Contains((ItemGroups)_itemClass, _itemSubClass))
             {
-                WagonItems = player.Items.SearchItems((ItemGroups)_itemClass, _itemSubClass);
+                WagonItems = player.Items.SearchItems((ItemGroups)_itemClass, _itemSubClass).FindAll(item => !item.IsQuestItem);
                 wagonItems += Helpers.CalculateLengthOrStackCount(WagonItems);
             }
 

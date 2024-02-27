@@ -42,13 +42,13 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             if (player.Items.Contains((ItemGroups)_itemClass, _itemSubClass))
             {
-                var items = player.Items.SearchItems((ItemGroups)_itemClass, _itemSubClass);
+                var items = player.Items.SearchItems((ItemGroups)_itemClass, _itemSubClass).FindAll(item => !item.IsQuestItem);
                 total += Helpers.CalculateLengthOrStackCount(items);
             }
 
             if (player.WagonItems.Contains((ItemGroups)_itemClass, _itemSubClass))
             {
-                var items = player.WagonItems.SearchItems((ItemGroups)_itemClass, _itemSubClass);
+                var items = player.WagonItems.SearchItems((ItemGroups)_itemClass, _itemSubClass).FindAll(item => !item.IsQuestItem);
                 total += Helpers.CalculateLengthOrStackCount(items);
             }
 
