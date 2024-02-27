@@ -35,6 +35,7 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
   * pchealthp lower than \<minPercent> // Health Quest Actions is also supported
 * player currentmappixel x \<xCoord> y \<yCoord> 
 * player currentmappixel x \<xCoord> y \<yCoord> delta \<distance>
+* player guild rank in \<guildGroupName> at least \<minRank>
 
 ## Details
 
@@ -49,6 +50,7 @@ that might affect the user experience.
 * `can kill` - adding it will bypass 1 point limit and will allow to kill a player 
 * `player possesses`, `player equipped with`, and `player currentmappixel` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
 * The distance in `player currentmappixel` is $`\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}`$
+* `player guild rank` For a guild group, see [FactionFile.GuildGroups enum](https://github.com/Interkarma/daggerfall-unity/blob/master/Assets/Scripts/API/FactionFile.cs#L568).
 * `player [vitals] is less than` triggers will fire only once. Author will need to create several stages if they need it to fire more than once.
 * `player fatigue is less than <minPoints> pt` is applying FatigueMultiplier inside, so authors will need to set normal value as on the character page.
   ```
