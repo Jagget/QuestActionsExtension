@@ -31,6 +31,7 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new WhenFatigueLevel(null));
             questMachine.RegisterAction(new WhenMagickaLevel(null));
             questMachine.RegisterAction(new CurrentMapPixel(null));
+            questMachine.RegisterAction(new CurrentInBlockPixel(null));
             questMachine.RegisterAction(new GuildRankAtLeast(null));
             _mod.IsReady = true;
         }

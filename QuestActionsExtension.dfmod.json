@@ -1,6 +1,6 @@
 {
     "ModTitle": "Quest Actions Extension",
-    "ModVersion": "1.4.0",
+    "ModVersion": "1.5.0",
     "ModAuthor": "Jagget",
     "ContactInfo": "https://forums.dfworkshop.net",
     "DFUnity_Version": "1.0.0",
@@ -22,6 +22,7 @@
         "Assets/Game/Mods/QuestActionsExtension/Actions/WhenFatigueLevel.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/WhenMagickaLevel.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/CurrentMapPixel.cs",
-        "Assets/Game/Mods/QuestActionsExtension/Actions/GuildRankAtLeast.cs"
+        "Assets/Game/Mods/QuestActionsExtension/Actions/GuildRankAtLeast.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/CurrentInBlockPixel.cs"
     ]
 }
