@@ -3,6 +3,7 @@ using DaggerfallWorkshop.Game.Questing;
 using DaggerfallWorkshop.Game.Utility.ModSupport;
 using Game.Mods.QuestActionsExtension.Actions;
 using UnityEngine;
+using Wenzil.Console;
 
 namespace Game.Mods.QuestActionsExtension
 {
@@ -33,6 +34,12 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new CurrentMapPixel(null));
             questMachine.RegisterAction(new CurrentInBlockPixel(null));
             questMachine.RegisterAction(new GuildRankAtLeast(null));
+            questMachine.RegisterAction(new RaiseTime(null));
+
+            ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.InBlockPosition.Name, ConsoleCommands.InBlockPosition.Description, ConsoleCommands.InBlockPosition.Usage, ConsoleCommands.InBlockPosition.Execute);
+            ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.CurrentMapPixel.Name, ConsoleCommands.CurrentMapPixel.Description, ConsoleCommands.CurrentMapPixel.Usage, ConsoleCommands.CurrentMapPixel.Execute);
+            ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.EnumerateInventory.Name, ConsoleCommands.EnumerateInventory.Description, ConsoleCommands.EnumerateInventory.Usage, ConsoleCommands.EnumerateInventory.Execute);
+
             _mod.IsReady = true;
         }
     }

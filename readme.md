@@ -19,6 +19,8 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * infect player as werewolf
 * infect player as wereboar
 * player handsover \<numberOfItems> items class \<itemClass> subclass \<TemplateIndex>
+* raise time by \<hours>:\<minutes>
+* raise time by \<hours>:\<minutes> saying \<sayingID>
 
 ## Here's the list of added triggers: 
 * player within \<distance> units of foe \<foe> // Actions Framework
@@ -38,6 +40,14 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * player inblock position x \<xCoord> y \<yCoord> 
 * player inblock position x \<xCoord> y \<yCoord> delta \<distance>
 * player guild rank in \<guildGroupName> at least \<minRank>
+
+## Here's the list of added console commands:
+* `qae_inblockposition`
+  * Output current position coordinates inside the current block.
+* `qae_getcurrentpixel`
+  * Output pixel coordinates for a current location.
+* `qae_player_possesses (inventory|wagon)`
+  * Output list of items that player possesses in the inventory or in the wagon.
 
 ## Details
 
@@ -59,6 +69,7 @@ that might affect the user experience.
   ```
   player fatigue is less than 30 pt // NOT 1920! 😁
   ```
+* `raise time by` will skip time by defined hours and minutes. Time increases should always be positive.
 
 ## Example quest of selling 10 arrows
 
