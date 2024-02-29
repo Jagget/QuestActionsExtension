@@ -104,3 +104,22 @@ _sold_ task:
   give pc _reward_
   end quest
 ```
+
+## Exmaple quest to find a center of the city
+_(that is if the quest is started in the city)_
+
+```
+QRC:
+QuestComplete:  [1004]
+I found a CENTER of the city and stood there for 45 minutes, contemplating my life!
+
+QBN:
+
+_found_ task:
+  player inblock position x 64 y 64
+  
+_close_ task:
+  when _found_
+  raise time by 0:45 saying 1004
+  end quest
+```
