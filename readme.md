@@ -21,6 +21,8 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * player handsover \<numberOfItems> items class \<itemClass> subclass \<TemplateIndex>
 * raise time by \<hours>:\<minutes>
 * raise time by \<hours>:\<minutes> saying \<sayingID>
+* raise time to \<hours>:\<minutes>
+* raise time to \<hours>:\<minutes> saying \<sayingID>
 
 ## Here's the list of added triggers: 
 * player within \<distance> units of foe \<foe> // Actions Framework
@@ -70,6 +72,7 @@ that might affect the user experience.
   player fatigue is less than 30 pt // NOT 1920! 😁
   ```
 * `raise time by` will skip time by defined hours and minutes. Time increases should always be positive.
+* `raise time to` will skip time to the desired time. If it is now 11:00 and you ask for 10:45, it will be the next day.
 
 ## Example quest of selling 10 arrows
 
