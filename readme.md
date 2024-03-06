@@ -42,6 +42,11 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * player inblock position x \<xCoord> y \<yCoord> 
 * player inblock position x \<xCoord> y \<yCoord> delta \<distance>
 * player guild rank in \<guildGroupName> at least \<minRank>
+* enemy \<aFoe> health is lower than \<highLimit>%
+* enemy \<aFoe> health is lower than \<highLimit>% and higher than \<lowLimit>% 
+* player slain \<amount> enemies of class \<aFoe>
+* player slain \<amount> enemies of class \<aFoe> at \<aPlace>
+* player slain \<amount> enemies of class \<aFoe> at any \<placeType>
 
 ## Here's the list of added console commands:
 * `qae_inblockposition`
@@ -73,6 +78,8 @@ that might affect the user experience.
   ```
 * `raise time by` will skip time by defined hours and minutes. Time increases should always be positive.
 * `raise time to` will skip time to the desired time. If it is now 11:00 and you ask for 10:45, it will be the next day.
+* `enemy <aFoe> health is lower than` if player hit too hard and skip a lower limit (1% by default), the trigger will not spring. It makes sense to add fail-safe option. I guess an easy fail-safe option would just be to have an "killed foe" action.
+* `player slain <amount> enemies` will keep track of enemies killed. For enemy class check Quests-Foes.txt table, for Place type check Quests-Places.txt table. This trigger condition can only be used with building types (p1=0) in Quests-Places table. 
 
 ## Example quest of selling 10 arrows
 

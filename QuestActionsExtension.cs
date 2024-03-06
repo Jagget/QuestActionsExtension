@@ -35,6 +35,8 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new CurrentInBlockPixel(null));
             questMachine.RegisterAction(new GuildRankAtLeast(null));
             questMachine.RegisterAction(new RaiseTime(null));
+            questMachine.RegisterAction(new EnemyHealthLowerHigher(null));
+            questMachine.RegisterAction(new KilledEnemiesOfClass(null));
 
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.InBlockPosition.Name, ConsoleCommands.InBlockPosition.Description, ConsoleCommands.InBlockPosition.Usage, ConsoleCommands.InBlockPosition.Execute);
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.CurrentMapPixel.Name, ConsoleCommands.CurrentMapPixel.Description, ConsoleCommands.CurrentMapPixel.Usage, ConsoleCommands.CurrentMapPixel.Execute);
