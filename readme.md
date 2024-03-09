@@ -15,9 +15,7 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * reduce player fatigue on \<amount>
 * reduce player magicka by \<percent>
 * reduce player magicka on \<amount>
-* infect player as vampire
-* infect player as werewolf
-* infect player as wereboar
+* infect player as [vampire|werewolf|wereboar]
 * player handsover \<numberOfItems> items class \<itemClass> subclass \<TemplateIndex>
 * raise time by \<hours>:\<minutes>
 * raise time by \<hours>:\<minutes> saying \<sayingID>
@@ -47,6 +45,9 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * player slain \<amount> enemies of class \<aFoe>
 * player slain \<amount> enemies of class \<aFoe> at \<aPlace>
 * player slain \<amount> enemies of class \<aFoe> at any \<placeType>
+* magic-effect key \<effectKey> is on foe \<aFoe>
+* magic-effect key \<effectKey> is on player
+* player current-state is [god mode|no clip mode|no target mode|resting|loitering|ready to level up|arrested|in prison|in beast form]
 
 ## Here's the list of added console commands:
 * `qae_inblockposition`
@@ -79,7 +80,9 @@ that might affect the user experience.
 * `raise time by` will skip time by defined hours and minutes. Time increases should always be positive.
 * `raise time to` will skip time to the desired time. If it is now 11:00 and you ask for 10:45, it will be the next day.
 * `enemy <aFoe> health is lower than` if player hit too hard and skip a lower limit (1% by default), the trigger will not spring. It makes sense to add fail-safe option. I guess an easy fail-safe option would just be to have an "killed foe" action.
-* `player slain <amount> enemies` will keep track of enemies killed. For enemy class check Quests-Foes.txt table, for Place type check Quests-Places.txt table. This trigger condition can only be used with building types (p1=0) in Quests-Places table. 
+* `player slain <amount> enemies` will keep track of enemies killed. For enemy class check Quests-Foes.txt table, for Place type check Quests-Places.txt table. This trigger condition can only be used with building types (p1=0) in Quests-Places table.
+* `magic-effect key` should be an existing magic effect key, like "Shadow-True", "Slowfall", "Damage-Health", "Fortify-Luck", "SpellAbsorption", "Invisibility-Normal" or any other
+* `player current-state is` will be set to true whenever the requested condition is met.
 
 ## Example quest of selling 10 arrows
 
