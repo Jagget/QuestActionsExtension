@@ -39,6 +39,7 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new KilledEnemiesOfClass(null));
             questMachine.RegisterAction(new MagicEfectKeyIsOn(null));
             questMachine.RegisterAction(new CurrentStateIs(null));
+            questMachine.RegisterAction(new UpdateQuestItemMaterial(null));
 
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.InBlockPosition.Name, ConsoleCommands.InBlockPosition.Description, ConsoleCommands.InBlockPosition.Usage, ConsoleCommands.InBlockPosition.Execute);
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.CurrentMapPixel.Name, ConsoleCommands.CurrentMapPixel.Description, ConsoleCommands.CurrentMapPixel.Usage, ConsoleCommands.CurrentMapPixel.Execute);

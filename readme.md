@@ -21,6 +21,8 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * raise time by \<hours>:\<minutes> saying \<sayingID>
 * raise time to \<hours>:\<minutes>
 * raise time to \<hours>:\<minutes> saying \<sayingID>
+* update-quest-item \<item> set-material \<material>
+
 
 ## Here's the list of added triggers: 
 * player within \<distance> units of foe \<foe> // Actions Framework
@@ -83,6 +85,10 @@ that might affect the user experience.
 * `player slain <amount> enemies` will keep track of enemies killed. For enemy class check Quests-Foes.txt table, for Place type check Quests-Places.txt table. This trigger condition can only be used with building types (p1=0) in Quests-Places table.
 * `magic-effect key` should be an existing magic effect key, like "Shadow-True", "Slowfall", "Damage-Health", "Fortify-Luck", "SpellAbsorption", "Invisibility-Normal" or any other
 * `player current-state is` will be set to true whenever the requested condition is met.
+* `update-quest-item` material works for quest created items, the material value is as follows:
+  * for weapons: Iron Steel Silver Elven Dwarven Mithril Adamantium Ebony Orcish Daedric Leveled
+  * for armor: Leather Chain Iron Steel Silver Elven Dwarven Mithril Adamantium Ebony Orcish Daedric Leveled
+  * Using `Leveled` will assign random material, available on the current player level
 
 ## Example quest of selling 10 arrows
 
