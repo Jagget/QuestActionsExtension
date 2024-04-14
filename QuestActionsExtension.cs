@@ -40,6 +40,8 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new MagicEfectKeyIsOn(null));
             questMachine.RegisterAction(new CurrentStateIs(null));
             questMachine.RegisterAction(new UpdateQuestItemMaterial(null));
+            questMachine.RegisterAction(new UpdateQuestItemAddEnchantment(null));
+            questMachine.RegisterAction(new UpdateQuestItemApplyMagicTemplate(null));
 
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.InBlockPosition.Name, ConsoleCommands.InBlockPosition.Description, ConsoleCommands.InBlockPosition.Usage, ConsoleCommands.InBlockPosition.Execute);
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.CurrentMapPixel.Name, ConsoleCommands.CurrentMapPixel.Description, ConsoleCommands.CurrentMapPixel.Usage, ConsoleCommands.CurrentMapPixel.Execute);

@@ -4,7 +4,6 @@ using DaggerfallWorkshop.Game;
 using DaggerfallWorkshop.Game.Entity;
 using DaggerfallWorkshop.Game.Questing;
 using DaggerfallWorkshop.Utility;
-using UnityEngine;
 
 namespace Game.Mods.QuestActionsExtension.Actions
 {
@@ -14,6 +13,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         private Symbol _placeSymbol;
         private int _targetAmount;
         private int _killedAmount;
+        private int _p1;
         private int _p2;
         private int _p3;
 
@@ -64,6 +64,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 placeSymbol = new Symbol(aPlaceGroup.Value);
             }
 
+            var p1 = -1;
             var p2 = -100;
             var p3 = -100;
             if (placeTypeGroup.Success)
@@ -73,10 +74,10 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 if (placesTable.HasValue(name))
                 {
                     // Store values
-                    var p1 = Place.CustomParseInt(placesTable.GetValue("p1", name));
-                    if (p1 != 0)
+                    p1 = Place.CustomParseInt(placesTable.GetValue("p1", name));
+                    if (p1 != 0 && p1 != 1)
                     {
-                        throw new Exception("KilledEnemiesOfClass: This trigger condition can only be used with building types (p1=0) in Quests-Places table.");
+                        throw new Exception("KilledEnemiesOfClass: This trigger condition can only be used with building types (p1=0) and dungeon types (p1=1) in Quests-Places table.");
                     }
 
                     p2 = Place.CustomParseInt(placesTable.GetValue("p2", name));
@@ -102,6 +103,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 _placeSymbol = placeSymbol,
                 _targetAmount = amount,
                 _killedAmount = 0,
+                _p1 = p1,
                 _p2 = p2,
                 _p3 = p3,
             };
@@ -137,7 +139,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             // I did kill it, but it's not what we need
             if (enemyEntity.MobileEnemy.ID != _foeTypeID) return;
-            
+
             // I did kill it, and it's what we need
             var shouldCheckPlaceType = _p2 + _p3 > -200;
             var shouldCheckPlace = _placeSymbol != null;
@@ -161,7 +163,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             if (shouldCheckPlaceType)
             {
-                isCorrectPlaceType = Place.IsPlayerAtBuildingType(_p2, _p3);
+                isCorrectPlaceType = _p1 == 1 ? Helpers.IsPlayerAtDungeonType(_p2) : Place.IsPlayerAtBuildingType(_p2, _p3);
             }
             else
             {
@@ -193,6 +195,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 PlaceSymbol = _placeSymbol,
                 TargetAmount = _targetAmount,
                 KilledAmount = _killedAmount,
+                P1 = _p1,
                 P2 = _p2,
                 P3 = _p3,
             };
@@ -208,9 +211,10 @@ namespace Game.Mods.QuestActionsExtension.Actions
             _placeSymbol = data.PlaceSymbol;
             _targetAmount = data.TargetAmount;
             _killedAmount = data.KilledAmount;
+            _p1 = data.P1;
             _p2 = data.P2;
             _p3 = data.P3;
-            
+
             // Register events when restoring action
             RegisterEvents();
         }
@@ -222,6 +226,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
             public Symbol PlaceSymbol;
             public int TargetAmount;
             public int KilledAmount;
+            public int P1;
             public int P2;
             public int P3;
         }

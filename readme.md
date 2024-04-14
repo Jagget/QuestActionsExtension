@@ -22,6 +22,8 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * raise time to \<hours>:\<minutes>
 * raise time to \<hours>:\<minutes> saying \<sayingID>
 * update-quest-item \<item> set-material \<material>
+* update-quest-item \<anItem> add-enchantment type \<enchantmentType> spell \<spellId>
+* update-quest-item \<anItem> apply-magic-template \<templateIndex>
 
 
 ## Here's the list of added triggers: 
@@ -82,13 +84,21 @@ that might affect the user experience.
 * `raise time by` will skip time by defined hours and minutes. Time increases should always be positive.
 * `raise time to` will skip time to the desired time. If it is now 11:00 and you ask for 10:45, it will be the next day.
 * `enemy <aFoe> health is lower than` if player hit too hard and skip a lower limit (1% by default), the trigger will not spring. It makes sense to add fail-safe option. I guess an easy fail-safe option would just be to have an "killed foe" action.
-* `player slain <amount> enemies` will keep track of enemies killed. For enemy class check Quests-Foes.txt table, for Place type check Quests-Places.txt table. This trigger condition can only be used with building types (p1=0) in Quests-Places table.
+* `player slain <amount> enemies` will keep track of enemies killed. For enemy class check Quests-Foes.txt table, for Place type check Quests-Places.txt table. This trigger condition can only be used with building types (p1=0) and dungeon types (p1=1) in Quests-Places table.
 * `magic-effect key` should be an existing magic effect key, like "Shadow-True", "Slowfall", "Damage-Health", "Fortify-Luck", "SpellAbsorption", "Invisibility-Normal" or any other
 * `player current-state is` will be set to true whenever the requested condition is met.
 * `update-quest-item` material works for quest created items, the material value is as follows:
   * for weapons: Iron Steel Silver Elven Dwarven Mithril Adamantium Ebony Orcish Daedric Leveled
   * for armor: Leather Chain Iron Steel Silver Elven Dwarven Mithril Adamantium Ebony Orcish Daedric Leveled
   * Using `Leveled` will assign random material, available on the current player level
+* `update-quest-item add-enchantment` will add up to 10 enchantments to the item.
+  * The list of enchantmentTypes [can be found here](https://github.com/Interkarma/daggerfall-unity/blob/master/Assets/Scripts/API/ItemsFile.cs#L111)
+  * The list of Spell IDs [can be found here](https://github.com/Interkarma/daggerfall-unity/blob/master/Assets/StreamingAssets/Text/Master%20Localization%20CSV%20Files/Internal_Spells.csv)
+* `update-quest-item apply-magic-template` will apply ready magic template to an item.
+  * The list of magic templates [can be found here](https://github.com/Interkarma/daggerfall-unity/blob/master/Assets/Resources/MagicItemTemplates.txt)
+  * You can use only templates with type=RegularMagicItem
+  * You can use `add-enchantment` after `apply-magic-template`, this will result in additional capabilities
+  * If you use `apply-magic-template` after `add-enchantment`, all magic powers will be overwritten
 
 ## Example quest of selling 10 arrows
 
