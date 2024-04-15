@@ -1,6 +1,6 @@
 {
     "ModTitle": "Quest Actions Extension",
-    "ModVersion": "1.11.0",
+    "ModVersion": "1.11.1",
     "ModAuthor": "Jagget",
     "ContactInfo": "https://forums.dfworkshop.net",
     "DFUnity_Version": "1.0.0",
@@ -30,6 +30,8 @@
         "Assets/Game/Mods/QuestActionsExtension/Actions/KilledEnemiesOfClass.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/MagicEfectKeyIsOn.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/CurrentStateIs.cs",
-        "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemMaterial.cs"
+        "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemMaterial.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemAddEnchantment.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemApplyMagicTemplate.cs"
     ]
 }
