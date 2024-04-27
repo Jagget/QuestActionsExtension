@@ -52,7 +52,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         #region Serialization
 
         [FullSerializer.fsObject("v1")]
-        private struct SaveData_v1
+        public struct SaveData_v1
         {
             public int minPoints;
             public int minPercent;

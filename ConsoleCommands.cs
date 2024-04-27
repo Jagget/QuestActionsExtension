@@ -37,6 +37,20 @@ namespace Game.Mods.QuestActionsExtension
             }
         }
 
+        public static class CurrentRegionIndex
+        {
+            public const string Name = "qae_getcurrentregionindex";
+            public const string Description = "Output integer index for a current region.";
+            public const string Usage = "qae_getcurrentregionindex";
+
+            public static string Execute(params string[] args)
+            {
+                var cri = GameManager.Instance.PlayerGPS.CurrentRegionIndex;
+
+                return $"Current Region Index is: {cri}";
+            }
+        }
+
         public static class EnumerateInventory
         {
             private const string _error = "Incorrect arguments";

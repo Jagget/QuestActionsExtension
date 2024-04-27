@@ -42,10 +42,13 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new UpdateQuestItemMaterial(null));
             questMachine.RegisterAction(new UpdateQuestItemAddEnchantment(null));
             questMachine.RegisterAction(new UpdateQuestItemApplyMagicTemplate(null));
+            questMachine.RegisterAction(new PlayerLegalReputeIs(null));
+            questMachine.RegisterAction(new PlayerCurrentRegionIs(null));
 
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.InBlockPosition.Name, ConsoleCommands.InBlockPosition.Description, ConsoleCommands.InBlockPosition.Usage, ConsoleCommands.InBlockPosition.Execute);
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.CurrentMapPixel.Name, ConsoleCommands.CurrentMapPixel.Description, ConsoleCommands.CurrentMapPixel.Usage, ConsoleCommands.CurrentMapPixel.Execute);
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.EnumerateInventory.Name, ConsoleCommands.EnumerateInventory.Description, ConsoleCommands.EnumerateInventory.Usage, ConsoleCommands.EnumerateInventory.Execute);
+            ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.CurrentRegionIndex.Name, ConsoleCommands.CurrentRegionIndex.Description, ConsoleCommands.CurrentRegionIndex.Usage, ConsoleCommands.CurrentRegionIndex.Execute);
 
             _mod.IsReady = true;
         }

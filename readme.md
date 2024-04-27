@@ -52,6 +52,8 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * magic-effect key \<effectKey> is on foe \<aFoe>
 * magic-effect key \<effectKey> is on player
 * player current-state is [god mode|no clip mode|no target mode|resting|loitering|ready to level up|arrested|in prison|in beast form]
+* player legal-repute is (lower | higher) than \<amount>
+* player current-region-index is \<index>
 
 ## Here's the list of added console commands:
 * `qae_inblockposition`
@@ -60,6 +62,8 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
   * Output pixel coordinates for a current location.
 * `qae_player_possesses (inventory|wagon)`
   * Output list of items that player possesses in the inventory or in the wagon.
+* `qae_getcurrentregionindex`
+  * Outputs the integer index of the current region.
 
 ## Details
 
@@ -69,7 +73,7 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * `player handsover` will remove items from the inventory.
 * `player within` checks horizontal distance in in-game distance units (whatever they are).
 * `reduce player XXX` will change player's vitals. The vitals will not be reduced to the 0.
-Also, keep in mind, there's is currently an issue with HUD https://github.com/Interkarma/daggerfall-unity/issues/2593
+Also, keep in mind, there's currently an issue with HUD https://github.com/Interkarma/daggerfall-unity/issues/2593
 that might affect the user experience. 
 * `can kill` - adding it will bypass 1 point limit and will allow to kill a player 
 * `player possesses`, `player equipped with`, and `player currentmappixel` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
@@ -82,8 +86,8 @@ that might affect the user experience.
   player fatigue is less than 30 pt // NOT 1920! 😁
   ```
 * `raise time by` will skip time by defined hours and minutes. Time increases should always be positive.
-* `raise time to` will skip time to the desired time. If it is now 11:00 and you ask for 10:45, it will be the next day.
-* `enemy <aFoe> health is lower than` if player hit too hard and skip a lower limit (1% by default), the trigger will not spring. It makes sense to add fail-safe option. I guess an easy fail-safe option would just be to have an "killed foe" action.
+* `raise time to` will skip time to the desired time. If it is now 11:00, and you ask for 10:45, it will be the next day.
+* `enemy <aFoe> health is lower than` if player hit too hard and skip a lower limit (1% by default), the trigger will not spring. It makes sense to add fail-safe option. I guess an easy fail-safe option would just be to have a "killed foe" action.
 * `player slain <amount> enemies` will keep track of enemies killed. For enemy class check Quests-Foes.txt table, for Place type check Quests-Places.txt table. This trigger condition can only be used with building types (p1=0) and dungeon types (p1=1) in Quests-Places table.
 * `magic-effect key` should be an existing magic effect key, like "Shadow-True", "Slowfall", "Damage-Health", "Fortify-Luck", "SpellAbsorption", "Invisibility-Normal" or any other
 * `player current-state is` will be set to true whenever the requested condition is met.
@@ -99,6 +103,8 @@ that might affect the user experience.
   * You can use only templates with type=RegularMagicItem
   * You can use `add-enchantment` after `apply-magic-template`, this will result in additional capabilities
   * If you use `apply-magic-template` after `add-enchantment`, all magic powers will be overwritten
+* `player legal-repute` is "always on" trigger and might and will change when the player crosses the border
+* `player current-region-index` compares not the region name but region index, to know the region index travel there and use the `qae_getcurrentregionindex` console command. 
 
 ## Example quest of selling 10 arrows
 
@@ -134,7 +140,7 @@ _sold_ task:
   end quest
 ```
 
-## Exmaple quest to find a center of the city
+## Example quest to find a center of the city
 _(that is if the quest is started in the city)_
 
 ```

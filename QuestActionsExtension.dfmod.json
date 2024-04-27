@@ -1,6 +1,6 @@
 {
     "ModTitle": "Quest Actions Extension",
-    "ModVersion": "1.11.1",
+    "ModVersion": "1.12.0",
     "ModAuthor": "Jagget",
     "ContactInfo": "https://forums.dfworkshop.net",
     "DFUnity_Version": "1.0.0",
@@ -32,6 +32,8 @@
         "Assets/Game/Mods/QuestActionsExtension/Actions/CurrentStateIs.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemMaterial.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemAddEnchantment.cs",
-        "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemApplyMagicTemplate.cs"
+        "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemApplyMagicTemplate.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerLegalReputeIs.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerCurrentRegionIs.cs"
     ]
 }

@@ -220,7 +220,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         }
 
         [FullSerializer.fsObject("v1")]
-        private struct SaveDataV1
+        public struct SaveDataV1
         {
             public int FoeTypeID;
             public Symbol PlaceSymbol;

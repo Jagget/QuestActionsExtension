@@ -45,6 +45,8 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 // Infect player with vampirism stage one
                 EntityEffectBundle bundle = GameManager.Instance.PlayerEffectManager.CreateVampirismDisease();
                 GameManager.Instance.PlayerEffectManager.AssignBundle(bundle, AssignBundleFlags.SpecialInfection);
+                SetComplete();
+                return;
             }
 
             if (_werewolf)
@@ -52,6 +54,8 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 // Infect player with werewolf lycanthropy stage one
                 EntityEffectBundle bundle = GameManager.Instance.PlayerEffectManager.CreateLycanthropyDisease(LycanthropyTypes.Werewolf);
                 GameManager.Instance.PlayerEffectManager.AssignBundle(bundle, AssignBundleFlags.SpecialInfection);
+                SetComplete();
+                return;
             }
 
             if (_wereboar)
@@ -59,6 +63,8 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 // Infect player with wereboar lycanthropy stage one
                 EntityEffectBundle bundle = GameManager.Instance.PlayerEffectManager.CreateLycanthropyDisease(LycanthropyTypes.Wereboar);
                 GameManager.Instance.PlayerEffectManager.AssignBundle(bundle, AssignBundleFlags.SpecialInfection);
+                SetComplete();
+                return;
             }
 
             SetComplete();
@@ -86,7 +92,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         }
 
         [FullSerializer.fsObject("v1")]
-        private struct SaveData_v1
+        public struct SaveData_v1
         {
             public bool vampire;
             public bool werewolf;

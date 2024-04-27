@@ -115,7 +115,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         }
 
         [FullSerializer.fsObject("v1")]
-        private struct SaveData_v1
+        public struct SaveData_v1
         {
             public bool cankill;
             public int amount;
