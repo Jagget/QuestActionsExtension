@@ -7,6 +7,7 @@ using DaggerfallWorkshop.Game;
 using DaggerfallWorkshop.Game.Formulas;
 using DaggerfallWorkshop.Game.Items;
 using DaggerfallWorkshop.Utility;
+using UnityEngine;
 
 namespace Game.Mods.QuestActionsExtension
 {
@@ -139,7 +140,14 @@ namespace Game.Mods.QuestActionsExtension
             item.maxCondition = 1500;
             item.currentCondition = 1500;
 
-            var enchValue = GetValueOfOneEnchantment(enchantment);
+            var enchValue = 0;
+            try
+            {
+                enchValue = GetValueOfOneEnchantment(enchantment);
+            }
+            finally
+            {
+            }
 
             // Set the value of the item. This is determined by the enchantment point cost/spell-casting cost
             // of the enchantments on the item.
@@ -151,6 +159,8 @@ namespace Game.Mods.QuestActionsExtension
             {
                 item.value += enchValue;
             }
+
+            Debug.Log($"Enchantment type {enchantmentType} added");
         }
 
         // TODO: Switch to Place.IsPlayerAtDungeonType(), when https://github.com/Interkarma/daggerfall-unity/pull/2614 released!

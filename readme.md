@@ -22,6 +22,7 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * raise time to \<hours>:\<minutes>
 * raise time to \<hours>:\<minutes> saying \<sayingID>
 * update-quest-item \<item> set-material \<material>
+* update-quest-item \<anItem> add-enchantment type \<enchantmentType>
 * update-quest-item \<anItem> add-enchantment type \<enchantmentType> spell \<spellId>
 * update-quest-item \<anItem> apply-magic-template \<templateIndex>
 
@@ -96,8 +97,7 @@ that might affect the user experience.
   * for armor: Leather Chain Iron Steel Silver Elven Dwarven Mithril Adamantium Ebony Orcish Daedric Leveled
   * Using `Leveled` will assign random material, available on the current player level
 * `update-quest-item add-enchantment` will add up to 10 enchantments to the item.
-  * The list of enchantmentTypes [can be found here](https://github.com/Interkarma/daggerfall-unity/blob/master/Assets/Scripts/API/ItemsFile.cs#L111)
-  * The list of Spell IDs [can be found here](https://github.com/Interkarma/daggerfall-unity/blob/master/Assets/StreamingAssets/Text/Master%20Localization%20CSV%20Files/Internal_Spells.csv)
+  * The list of possible param combinations [can be found here](https://github.com/Jagget/QuestActionsExtension/wiki/UpdateQuestItem-AddEnchantment)
 * `update-quest-item apply-magic-template` will apply ready magic template to an item.
   * The list of magic templates [can be found here](https://github.com/Interkarma/daggerfall-unity/blob/master/Assets/Resources/MagicItemTemplates.txt)
   * You can use only templates with type=RegularMagicItem

@@ -2,6 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 using DaggerfallConnect.FallExe;
 using DaggerfallWorkshop.Game.Questing;
+using UnityEngine;
 
 namespace Game.Mods.QuestActionsExtension.Actions
 {
@@ -15,7 +16,8 @@ namespace Game.Mods.QuestActionsExtension.Actions
         {
         }
 
-        public override string Pattern => @"update-quest-item (?<anItem>[a-zA-Z0-9_.]+) add-enchantment type (?<enchantmentType>\w+) spell (?<spellId>\d+)";
+        public override string Pattern => @"update-quest-item (?<anItem>[a-zA-Z0-9_.]+) add-enchantment type (?<enchantmentType>\w+) spell (?<spellId>[+-]?\d+)|" +
+                                          @"update-quest-item (?<anItem>[a-zA-Z0-9_.]+) add-enchantment type (?<enchantmentType>\w+)";
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)
         {
@@ -27,6 +29,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             if (string.IsNullOrEmpty(match.Groups["anItem"].Value))
             {
+                Debug.LogError("Parameter 'Item' is missing.");
                 SetComplete();
                 return null;
             }
@@ -34,29 +37,39 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             if (string.IsNullOrEmpty(match.Groups["enchantmentType"].Value))
             {
+                Debug.LogError("Parameter 'enchantmentType' is missing.");
                 SetComplete();
                 return null;
             }
 
+            short spellId = -1;
 
-            if (string.IsNullOrEmpty(match.Groups["spellId"].Value))
+            if (!string.IsNullOrEmpty(match.Groups["spellId"].Value))
             {
-                SetComplete();
-                return null;
+                spellId = (short)Parser.ParseInt(match.Groups["spellId"].Value);
             }
 
             var enchantmentType = match.Groups["enchantmentType"].Value;
 
-            var enchantmentExist = Enum.IsDefined(typeof(EnchantmentTypes), enchantmentType);
-
-            if (enchantmentExist)
+            if (Enum.IsDefined(typeof(EnchantmentTypes), enchantmentType))
             {
+                if ((int)Enum.Parse(typeof(EnchantmentTypes), enchantmentType) > 15)
+                {
+                    Debug.LogErrorFormat("Enchantment type `{0}` is not supported.", enchantmentType);
+                    SetComplete();
+                    return null;
+                }
+
                 return new UpdateQuestItemAddEnchantment(parentQuest)
                 {
                     _itemSymbol = new Symbol(match.Groups["anItem"].Value),
                     _enchantmentType = enchantmentType,
-                    _spellId = (short)Parser.ParseInt(match.Groups["spellId"].Value),
+                    _spellId = spellId,
                 };
+            }
+            else
+            {
+                Debug.LogErrorFormat("Enchantment type `{0}` doesn't exist.", enchantmentType);
             }
 
             SetComplete();
@@ -75,6 +88,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
             }
 
             Helpers.AddEnchantmentToItem(item.DaggerfallUnityItem, _enchantmentType, _spellId);
+            SetComplete();
         }
 
         public override object GetSaveData()

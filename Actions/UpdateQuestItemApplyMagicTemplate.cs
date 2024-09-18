@@ -54,6 +54,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
             }
 
             Helpers.ApplyMagicTemplate(item.DaggerfallUnityItem, _templateId);
+            SetComplete();
         }
 
         public override object GetSaveData()
