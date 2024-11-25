@@ -23,6 +23,9 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new ReducePlayerHealth(null));
             questMachine.RegisterAction(new ReducePlayerFatigue(null));
             questMachine.RegisterAction(new ReducePlayerMagicka(null));
+            questMachine.RegisterAction(new IncreasePlayerHealth(null));
+            questMachine.RegisterAction(new IncreasePlayerFatigue(null));
+            questMachine.RegisterAction(new IncreasePlayerMagicka(null));
             questMachine.RegisterAction(new WithinUnits(null));
             questMachine.RegisterAction(new PlayerPossesses(null));
             questMachine.RegisterAction(new PlayerHandsover(null));

@@ -5,6 +5,7 @@ QuestActionsExtension continues the work started by Actions Framework.
 It includes the same 3 actions from Actions Framework and adds more new ones.
 
 ## Here's the list of added actions:
+
 * reduce player health by \<percent> // Actions Framework
 * reduce player health by \<percent> every \<interval> seconds
 * reduce player health by \<percent> every \<interval> seconds can kill
@@ -15,6 +16,12 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * reduce player fatigue on \<amount>
 * reduce player magicka by \<percent>
 * reduce player magicka on \<amount>
+* increase player health by \<percent>
+* increase player health on \<amount>
+* increase player fatigue by \<percent>
+* increase player fatigue on \<amount>
+* increase player magicka by \<percent>
+* increase player magicka on \<amount>
 * infect player as [vampire|werewolf|wereboar]
 * player handsover \<numberOfItems> items class \<itemClass> subclass \<TemplateIndex>
 * raise time by \<hours>:\<minutes>
@@ -26,8 +33,8 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * update-quest-item \<anItem> add-enchantment type \<enchantmentType> spell \<spellId>
 * update-quest-item \<anItem> apply-magic-template \<templateIndex>
 
+## Here's the list of added triggers:
 
-## Here's the list of added triggers: 
 * player within \<distance> units of foe \<foe> // Actions Framework
 * player within \<distance> units of item \<item> // Actions Framework
 * player possesses \<numberOfItems> items class \<itemClass> subclass \<TemplateIndex>
@@ -52,11 +59,12 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * player slain \<amount> enemies of class \<aFoe> at any \<placeType>
 * magic-effect key \<effectKey> is on foe \<aFoe>
 * magic-effect key \<effectKey> is on player
-* player current-state is [god mode|no clip mode|no target mode|resting|loitering|ready to level up|arrested|in prison|in beast form]
+* player current-state is [god mode|no clip mode|no target mode|resting|loitering|ready to level up|arrested|in prison|in beast form|vampire|wereboar|werewolf]
 * player legal-repute is (lower | higher) than \<amount>
 * player current-region-index is \<index>
 
 ## Here's the list of added console commands:
+
 * `qae_inblockposition`
   * Output current position coordinates inside the current block.
 * `qae_getcurrentpixel`
@@ -74,8 +82,7 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * `player handsover` will remove items from the inventory.
 * `player within` checks horizontal distance in in-game distance units (whatever they are).
 * `reduce player XXX` will change player's vitals. The vitals will not be reduced to the 0.
-Also, keep in mind, there's currently an issue with HUD https://github.com/Interkarma/daggerfall-unity/issues/2593
-that might affect the user experience. 
+* `increase player XXX` will change player's vitals. The vitals will not be increased past maximum values.
 * `can kill` - adding it will bypass 1 point limit and will allow to kill a player 
 * `player possesses`, `player equipped with`, and `player currentmappixel` will be checked constantly. Works the same way as the "weather" or "climate" triggers.
 * The delta distance in `player currentmappixel`, and `player inblock position` is $`\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}`$
@@ -83,6 +90,7 @@ that might affect the user experience.
 * `player guild rank` For a guild group, see [FactionFile.GuildGroups enum](https://github.com/Interkarma/daggerfall-unity/blob/master/Assets/Scripts/API/FactionFile.cs#L568).
 * `player [vitals] is less than` triggers will fire only once. Author will need to create several stages if they need it to fire more than once.
 * `player fatigue is less than <minPoints> pt` is applying FatigueMultiplier inside, so authors will need to set normal value as on the character page.
+  
   ```
   player fatigue is less than 30 pt // NOT 1920! 😁
   ```
@@ -129,7 +137,7 @@ _handover_ task:
   when _possesses_
   player handsover 10 items class 3 subclass 131  
   say 1013
-  
+
 _damaged_ task:
   when _handover_
   reduce player health on 5
@@ -141,6 +149,7 @@ _sold_ task:
 ```
 
 ## Example quest to find a center of the city
+
 _(that is if the quest is started in the city)_
 
 ```
@@ -152,7 +161,7 @@ QBN:
 
 _found_ task:
   player inblock position x 64 y 64
-  
+
 _close_ task:
   when _found_
   raise time by 0:45 saying 1004

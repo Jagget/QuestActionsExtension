@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using DaggerfallWorkshop;
 using DaggerfallWorkshop.Game;
 using DaggerfallWorkshop.Game.Questing;
 
@@ -15,6 +16,9 @@ namespace Game.Mods.QuestActionsExtension.Actions
         private bool _arrested;
         private bool _inPrison;
         private bool _isInBeastForm;
+        private bool _isVampire;
+        private bool _isWereboar;
+        private bool _isWerewolf;
 
         public CurrentStateIs(Quest parentQuest) : base(parentQuest)
         {
@@ -30,7 +34,10 @@ namespace Game.Mods.QuestActionsExtension.Actions
                                           "player current-state is (?<ReadyToLevelUp>ready to level up)|" +
                                           "player current-state is (?<Arrested>arrested)|" +
                                           "player current-state is (?<InPrison>in prison)|" +
-                                          "player current-state is (?<IsInBeastForm>in beast form)";
+                                          "player current-state is (?<IsInBeastForm>in beast form)" +
+                                          "player current-state is (?<Vampire>vampire)" +
+                                          "player current-state is (?<Wereboar>wereboar)" +
+                                          "player current-state is (?<Werewolf>werewolf)";
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)
         {
@@ -47,8 +54,11 @@ namespace Game.Mods.QuestActionsExtension.Actions
             var arrested = match.Groups["Arrested"].Success;
             var inPrison = match.Groups["InPrison"].Success;
             var isInBeastForm = match.Groups["IsInBeastForm"].Success;
+            var isVampire = match.Groups["Vampire"].Success;
+            var isWereboar = match.Groups["Wereboar"].Success;
+            var isWerewolf = match.Groups["Werewolf"].Success;
 
-            if (godMode || noClipMode || noTargetMode || isResting || isLoitering || readyToLevelUp || arrested || inPrison || isInBeastForm)
+            if (godMode || noClipMode || noTargetMode || isResting || isLoitering || readyToLevelUp || arrested || inPrison || isInBeastForm || isVampire || isWereboar || isWerewolf)
             {
                 return new CurrentStateIs(parentQuest)
                 {
@@ -61,6 +71,9 @@ namespace Game.Mods.QuestActionsExtension.Actions
                     _arrested = arrested,
                     _inPrison = inPrison,
                     _isInBeastForm = isInBeastForm,
+                    _isVampire = isVampire,
+                    _isWereboar = isWereboar,
+                    _isWerewolf = isWerewolf,
                 };
             }
 
@@ -114,6 +127,21 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 return GameManager.Instance.PlayerEntity.IsInBeastForm;
             }
 
+            if (_isVampire)
+            {
+                return GameManager.Instance.PlayerEffectManager.HasVampirism();
+            }
+
+            if (_isWereboar)
+            {
+                return GameManager.Instance.PlayerEffectManager.LycanthropyType() == LycanthropyTypes.Wereboar;
+            }
+
+            if (_isWerewolf)
+            {
+                return GameManager.Instance.PlayerEffectManager.LycanthropyType() == LycanthropyTypes.Werewolf;
+            }
+
             return false;
         }
 
@@ -130,6 +158,9 @@ namespace Game.Mods.QuestActionsExtension.Actions
                 Arrested = _arrested,
                 InPrison = _inPrison,
                 IsInBeastForm = _isInBeastForm,
+                IsVampire = _isVampire,
+                IsWereboar = _isWereboar,
+                IsWerewolf = _isWerewolf,
             };
         }
 
@@ -148,6 +179,9 @@ namespace Game.Mods.QuestActionsExtension.Actions
             _arrested = data.Arrested;
             _inPrison = data.InPrison;
             _isInBeastForm = data.IsInBeastForm;
+            _isVampire = data.IsVampire;
+            _isWereboar = data.IsWereboar;
+            _isWerewolf = data.IsWerewolf;
         }
 
         [FullSerializer.fsObject("v1")]
@@ -162,6 +196,9 @@ namespace Game.Mods.QuestActionsExtension.Actions
             public bool Arrested;
             public bool InPrison;
             public bool IsInBeastForm;
+            public bool IsVampire;
+            public bool IsWereboar;
+            public bool IsWerewolf;
         }
     }
 }

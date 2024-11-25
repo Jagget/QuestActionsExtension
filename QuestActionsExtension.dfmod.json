@@ -1,6 +1,6 @@
 {
     "ModTitle": "Quest Actions Extension",
-    "ModVersion": "1.12.1",
+    "ModVersion": "1.13.0",
     "ModAuthor": "Jagget",
     "ContactInfo": "https://forums.dfworkshop.net",
     "DFUnity_Version": "1.1.1",
@@ -34,6 +34,9 @@
         "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemAddEnchantment.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/UpdateQuestItemApplyMagicTemplate.cs",
         "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerLegalReputeIs.cs",
-        "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerCurrentRegionIs.cs"
+        "Assets/Game/Mods/QuestActionsExtension/Actions/PlayerCurrentRegionIs.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/IncreasePlayerFatigue.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/IncreasePlayerHealth.cs",
+        "Assets/Game/Mods/QuestActionsExtension/Actions/IncreasePlayerMagicka.cs"
     ]
 }
