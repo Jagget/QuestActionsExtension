@@ -61,6 +61,8 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
 * magic-effect key \<effectKey> is on player
 * player current-state is [god mode|no clip mode|no target mode|resting|loitering|ready to level up|arrested|in prison|in beast form|vampire|wereboar|werewolf]
 * player legal-repute is (lower | higher) than \<amount>
+* player faction-repute with \<individualNpcName> is (lower | higher) than \<amount>
+* player faction-repute with-faction-id \<anyFactionID> is (lower | higher) than \<amount>
 * player current-region-index is \<index>
 
 ## Here's the list of added console commands:
@@ -112,6 +114,7 @@ It includes the same 3 actions from Actions Framework and adds more new ones.
   * You can use `add-enchantment` after `apply-magic-template`, this will result in additional capabilities
   * If you use `apply-magic-template` after `add-enchantment`, all magic powers will be overwritten
 * `player legal-repute` is "always on" trigger and might and will change when the player crosses the border
+* `faction-repute with individualNpcName` only works with a special named NPCs. Examples are King Gothryd, Queen Aubk-i, Prince Lhotun, etc.
 * `player current-region-index` compares not the region name but region index, to know the region index travel there and use the `qae_getcurrentregionindex` console command. 
 
 ## Example quest of selling 10 arrows

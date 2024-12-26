@@ -47,6 +47,7 @@ namespace Game.Mods.QuestActionsExtension
             questMachine.RegisterAction(new UpdateQuestItemApplyMagicTemplate(null));
             questMachine.RegisterAction(new PlayerLegalReputeIs(null));
             questMachine.RegisterAction(new PlayerCurrentRegionIs(null));
+            questMachine.RegisterAction(new PlayerFactionReputeIs(null));
 
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.InBlockPosition.Name, ConsoleCommands.InBlockPosition.Description, ConsoleCommands.InBlockPosition.Usage, ConsoleCommands.InBlockPosition.Execute);
             ConsoleCommandsDatabase.RegisterCommand(ConsoleCommands.CurrentMapPixel.Name, ConsoleCommands.CurrentMapPixel.Description, ConsoleCommands.CurrentMapPixel.Usage, ConsoleCommands.CurrentMapPixel.Execute);
