@@ -14,6 +14,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         public EnemyHealthLowerHigher(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
+            IsAlwaysOnTriggerCondition = true;
         }
 
         public override string Pattern => @"enemy (?<aFoe>[a-zA-Z0-9_.-]+) health is lower than (?<highLimit>\d+)% and higher than (?<lowLimit>\d+)%|" +

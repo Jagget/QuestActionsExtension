@@ -39,7 +39,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             var magicka = 0;
             if (_percent > 0)
-                magicka = (int)(player.CurrentMagicka - player.MaxMagicka / 100f * _percent);
+                magicka = (int)(player.CurrentMagicka - player.MaxMagicka * _percent / 100f);
 
             if (_amount > 0)
                 magicka = player.CurrentMagicka - _amount;

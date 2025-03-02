@@ -16,6 +16,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         public WhenFatigueLevel(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
+            IsAlwaysOnTriggerCondition = true;
         }
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)
@@ -38,7 +39,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         {
             if (_minPercent > 0)
             {
-                var currentFatigue = GameManager.Instance.PlayerEntity.CurrentFatigue / GameManager.Instance.PlayerEntity.MaxFatigue * 100;
+                var currentFatigue = (float)GameManager.Instance.PlayerEntity.CurrentFatigue * 100 / GameManager.Instance.PlayerEntity.MaxFatigue;
                 return currentFatigue <= _minPercent;
             }
 

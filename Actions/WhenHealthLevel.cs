@@ -17,6 +17,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         public WhenHealthLevel(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
+            IsAlwaysOnTriggerCondition = true;
         }
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)

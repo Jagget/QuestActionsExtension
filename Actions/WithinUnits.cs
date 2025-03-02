@@ -13,6 +13,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         public WithinUnits(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
+            IsAlwaysOnTriggerCondition = true;
         }
 
         public override string Pattern => @"player within (?<distance>\d+) units of foe (?<foe>[a-zA-Z0-9_.-]+)|" +
@@ -37,7 +38,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         {
             QuestResource resource = ParentQuest.GetResource(_symbol);
 
-            if (resource == null || resource.QuestResourceBehaviour == null)
+            if (resource?.QuestResourceBehaviour is null)
                 return false;
 
             var targetPosition = resource.QuestResourceBehaviour.transform.position;
@@ -47,9 +48,17 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             var theSameFloor = Mathf.Abs(targetPosition.y - playerPosition.y) <= 1.0;
 
-            var closeHorizontally = Vector2.Distance(targetFlatPosition, playerFlatPosition) <= (double)_distance;
+            var closeHorizontally = Vector2.Distance(targetFlatPosition, playerFlatPosition) <= _distance;
 
             return closeHorizontally && theSameFloor;
+        }
+
+        #region Serialization
+        [FullSerializer.fsObject("v1")]
+        public struct SaveData_v1
+        {
+            public int distance;
+            public Symbol symbol;
         }
 
         public override object GetSaveData()
@@ -57,7 +66,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
             return new SaveData_v1()
             {
                 distance = _distance,
-                symbol = _symbol
+                symbol = _symbol,
             };
         }
 
@@ -69,12 +78,6 @@ namespace Game.Mods.QuestActionsExtension.Actions
             _distance = data.distance;
             _symbol = data.symbol;
         }
-
-        [FullSerializer.fsObject("v1")]
-        public struct SaveData_v1
-        {
-            public int distance;
-            public Symbol symbol;
-        }
+        #endregion
     }
 }

@@ -16,6 +16,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         public GuildRankAtLeast(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
+            IsAlwaysOnTriggerCondition = true;
         }
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)

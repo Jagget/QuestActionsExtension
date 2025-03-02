@@ -15,6 +15,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         public WhenMagickaLevel(Quest parentQuest) : base(parentQuest)
         {
             IsTriggerCondition = true;
+            IsAlwaysOnTriggerCondition = true;
         }
 
         public override IQuestAction CreateNew(string source, Quest parentQuest)
@@ -37,7 +38,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
         {
             if (_minPercent > 0)
             {
-                var currentMagicka = GameManager.Instance.PlayerEntity.CurrentMagicka / GameManager.Instance.PlayerEntity.MaxMagicka * 100;
+                var currentMagicka = (float)GameManager.Instance.PlayerEntity.CurrentMagicka * 100 / GameManager.Instance.PlayerEntity.MaxMagicka;
                 return currentMagicka <= _minPercent;
             }
 

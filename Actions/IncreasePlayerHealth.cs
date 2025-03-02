@@ -42,7 +42,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             var health = 0;
             if (_percent > 0)
-                health = (int)(player.CurrentHealth + player.MaxHealth / 100f * _percent);
+                health = (int)(player.CurrentHealth + player.MaxHealth * _percent / 100f);
 
             if (_amount > 0)
                 health = player.CurrentHealth + _amount;

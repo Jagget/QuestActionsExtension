@@ -39,7 +39,7 @@ namespace Game.Mods.QuestActionsExtension.Actions
 
             var fatigue = 0;
             if (_percent > 0)
-                fatigue = (int)(player.CurrentFatigue - player.MaxFatigue / 100f * _percent);
+                fatigue = (int)(player.CurrentFatigue - player.MaxFatigue * _percent / 100f);
 
             if (_amount > 0)
                 fatigue = player.CurrentFatigue - _amount;
